@@ -26,6 +26,12 @@ import javafx.stage.Stage;
 public class TreasureFrame extends Frame {
 	private final static Logger LOGGER = LoggerFactory.getLogger(TreasureFrame.class);
 	
+	private final static String MSG_TOTAL_SCORE_KEY = "totalScore";
+	private final static String MSG_ROUND_SCORE_KEY = "roundScore";
+	private final static String MSG_LOCATE_TREASURE_KEY = "locateTreasure";
+	private final static String MSG_APP_TITLE_TREASURE_HUNT_KEY = "appTitleTreasureHunt";
+	private final static String MSG_NO_LABEL_AT_LOCATION_KEY = "noLabelAtLocation";
+	
 	private Scorer scorer;
 	private int puzzlerAttempts;
 	private TreasureField treasureField;
@@ -82,7 +88,7 @@ public class TreasureFrame extends Frame {
 	@Override
 	public void show(Stage stage) {
 		stage.setScene(scene);
-		stage.setTitle(I18n.getBundle().getString("appTitleTreasureHunt"));
+		stage.setTitle(I18n.getBundle().getString(MSG_APP_TITLE_TREASURE_HUNT_KEY));
 		stage.show();
 	}
 	
@@ -94,9 +100,9 @@ public class TreasureFrame extends Frame {
 		
 		totalScoreLabel = new Label(String.format(GameSettings.SCORE_FORMAT, 0));
 		roundScoreLabel = new Label(String.format(GameSettings.SCORE_FORMAT, 0));
-		hbox.getChildren().addAll(new Label(I18n.getBundle().getString("totalScoreLabel")),
+		hbox.getChildren().addAll(new Label(I18n.getBundle().getString(MSG_TOTAL_SCORE_KEY)),
 				totalScoreLabel,
-				new Label(I18n.getBundle().getString("roundScoreLabel")),
+				new Label(I18n.getBundle().getString(MSG_ROUND_SCORE_KEY)),
 				roundScoreLabel);
 		return hbox;
 	}
@@ -132,7 +138,7 @@ public class TreasureFrame extends Frame {
 		
 		xPosTreasure = new TextField();
 		yPosTreasure = new TextField();
-		buttonTreasure = new Button(I18n.getBundle().getString("locateTreasureButton"));
+		buttonTreasure = new Button(I18n.getBundle().getString(MSG_LOCATE_TREASURE_KEY));
 		buttonTreasure.setOnAction(e -> doTreasureLocationAction());
 		
 		hbox.getChildren().addAll(xPosTreasure, yPosTreasure, buttonTreasure);
@@ -163,7 +169,7 @@ public class TreasureFrame extends Frame {
 		} else {
 			LOGGER.debug("No treasure at location (" + xInput + "," + yInput + ")");
 			responseLabel.setVisible(true);
-			responseLabel.setText(I18n.getBundle().getString("noLabelAtLocation") + " (" + xInput + "," + yInput + ")");
+			responseLabel.setText(I18n.getBundle().getString(MSG_NO_LABEL_AT_LOCATION_KEY) + " (" + xInput + "," + yInput + ")");
 		}
 
 	}

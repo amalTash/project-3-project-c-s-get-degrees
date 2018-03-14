@@ -17,6 +17,10 @@ import javafx.stage.Stage;
 public class PuzzlerFrame extends Frame {
 	private final static Logger LOGGER = LoggerFactory.getLogger(PuzzlerFrame.class);
 	
+	private final static String MSG_GAME_DESCRIPTION_KEY = "gameDescription";
+	private final static String MSG_ANSWER_PUZZLER_KEY = "answerPuzzler";
+	private final static String MSG_APP_TITLE_PUZZLER_KEY = "appTitlePuzzler";
+	
 	private PuzzlerMaker puzzlerMaker;
 	private Puzzler puzzler;
 	private int  answeringAttempts;
@@ -72,7 +76,7 @@ public class PuzzlerFrame extends Frame {
 		puzzlerLabel.setText(puzzler.getMessage());
 		answeringAttempts = 0;
 		stage.setScene(scene);
-		stage.setTitle(I18n.getBundle().getString("appTitlePuzzler"));
+		stage.setTitle(I18n.getBundle().getString(MSG_APP_TITLE_PUZZLER_KEY));
 		stage.show();
 	}
 
@@ -80,9 +84,9 @@ public class PuzzlerFrame extends Frame {
 		VBox vbox = new VBox();
 		vbox.setPadding(GameSettings.PADDING);
 		vbox.setSpacing(GameSettings.V_SPACING);
-		puzzlerLabel = new Label(I18n.getBundle().getString("gameDescription"));
+		puzzlerLabel = new Label(I18n.getBundle().getString(MSG_GAME_DESCRIPTION_KEY));
 		puzzlerAnswer = new TextField();
-		answerButton = new Button(I18n.getBundle().getString("answerPuzzler"));
+		answerButton = new Button(I18n.getBundle().getString(MSG_ANSWER_PUZZLER_KEY));
 		vbox.getChildren().addAll(puzzlerLabel, puzzlerAnswer, answerButton);
 		scene = new Scene(vbox, GameSettings.SCENE_WIDTH, GameSettings.CANVAS_HEIGHT);
 	}
