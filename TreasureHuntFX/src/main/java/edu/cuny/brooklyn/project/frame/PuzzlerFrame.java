@@ -58,7 +58,7 @@ public class PuzzlerFrame extends Frame {
 					nextFrame.getTreasureField().getTreasureBoundingBoxWidth(),
 					nextFrame.getTreasureField().getTreasureBoundingBoxLength(),
 					answeringAttempts);		
-			nextFrame.setClue(clue);
+			nextFrame.startLocatingTreasure(clue);
 			nextFrame.setAttempts(answeringAttempts);
 			nextFrame.show(nextStage);
 		}

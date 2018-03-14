@@ -40,6 +40,8 @@ public class GameSettings {
 	public final static double CANVAS_WIDTH = 600;
 	public final static double CANVAS_HEIGHT = 400;
 	public final static Color CANVAS_COLOR = Color.WHITE;
+	public final static double CANVAS_HOLDER_MIN_WIDTH = CANVAS_WIDTH;
+	public final static double CANVAS_HOLDER_MIN_HEIGHT = CANVAS_HEIGHT;
 	
 	public final static Insets PADDING = new Insets(20., 20., 20., 20.);
 	public final static Insets PADDING_X = new Insets(0., 20., 0., 20.); 
@@ -47,4 +49,6 @@ public class GameSettings {
 	public final static String SCORE_FORMAT = "%05d";
 
 	public static final Color DEFAULT_TREASURE_CELL_COLOR = Color.GOLD;
+	
+	public static final String DEFAULT_CANVAS_HOLDER_STYLE = "-fx-background-color:white";
 }

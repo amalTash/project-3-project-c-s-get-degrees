@@ -7,6 +7,7 @@ import edu.cuny.brooklyn.project.GameSettings;
 import edu.cuny.brooklyn.project.message.I18n;
 import edu.cuny.brooklyn.project.score.Scorer;
 import edu.cuny.brooklyn.project.treasure.TreasureField;
+import javafx.beans.InvalidationListener;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -20,7 +21,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 public class TreasureFrame extends Frame {
@@ -48,6 +48,9 @@ public class TreasureFrame extends Frame {
 	private TextField xPosTreasure;
 	private TextField yPosTreasure;
 	private Button buttonTreasure;
+	
+	// for resizing
+	private InvalidationListener resizeListener = o -> redrawTreasure();
 	
 	public TreasureFrame() {
 		scorer = new Scorer();
@@ -78,11 +81,13 @@ public class TreasureFrame extends Frame {
 		puzzlerAttempts = answeringAttempts;
 	}
 
-	public void setClue(String clue) {
+	public void startLocatingTreasure(String clue) {
 		clueLabel.setText(clue);
 		clueLabel.setVisible(true);
 		responseLabel.setVisible(false);
 		xyInputPane.setDisable(false);
+		canvas.widthProperty().removeListener(resizeListener);
+		canvas.heightProperty().removeListener(resizeListener);
 	}
 
 	@Override
@@ -109,8 +114,8 @@ public class TreasureFrame extends Frame {
 	
 	private Pane buildTreasureFieldPane() {
 		StackPane canvasHolder = new StackPane();
-		Rectangle rectangle = new Rectangle(GameSettings.CANVAS_WIDTH, GameSettings.CANVAS_HEIGHT, GameSettings.CANVAS_COLOR);
-		canvasHolder.getChildren().add(rectangle);
+		canvasHolder.setMinSize(GameSettings.CANVAS_HOLDER_MIN_WIDTH, GameSettings.CANVAS_HOLDER_MIN_HEIGHT);
+		canvasHolder.setStyle(GameSettings.DEFAULT_CANVAS_HOLDER_STYLE);
 		canvas = new Canvas(GameSettings.CANVAS_WIDTH, GameSettings.CANVAS_HEIGHT);
 		canvasHolder.getChildren().add(canvas);
 		
@@ -127,6 +132,10 @@ public class TreasureFrame extends Frame {
 		vbox.getChildren().addAll(clueLabel, responseLabel);
 		
 		canvasHolder.getChildren().add(vbox);
+		
+		canvas.widthProperty().bind(canvasHolder.widthProperty().subtract(20));
+		canvas.heightProperty().bind(canvasHolder.heightProperty().subtract(20));
+		
 		return canvasHolder;
 	}
 	
@@ -144,6 +153,11 @@ public class TreasureFrame extends Frame {
 		hbox.getChildren().addAll(xPosTreasure, yPosTreasure, buttonTreasure);
 		
 		return hbox;
+	}
+	
+	
+	private void clearCanvas() {
+		canvas.getGraphicsContext2D().clearRect(0,  0,  canvas.getWidth(), canvas.getHeight());
 	}
 	
 	private void doTreasureLocationAction() {
@@ -180,7 +194,8 @@ public class TreasureFrame extends Frame {
 		xyInputPane.setDisable(true);
 	}
 	
-	private void showTreasure() {
+	private void drawTreasure() {
+		LOGGER.debug("redraw");
 		double canvasWidth = canvas.getWidth();
 		double canvasHeight = canvas.getHeight();
 		double y = (double)treasureField.getTreasureYTop()/(double)treasureField.getFieldHeight()*canvasHeight;
@@ -193,6 +208,18 @@ public class TreasureFrame extends Frame {
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 		
 		gc.drawImage(image, x, y, w, h);
+	}
+	
+	private void redrawTreasure() {
+		clearCanvas();
+		drawTreasure();
+	}
+	
+	private void showTreasure() {
+		drawTreasure();
+		
+		canvas.widthProperty().addListener(resizeListener);
+		canvas.heightProperty().addListener(resizeListener);
 	}
 	
 	private void updateScore() {
