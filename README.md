@@ -10,7 +10,7 @@ Project Req
 
 - Game Round and Game Scores (2.1) - Tenzin  
 
-- Game Settings (2.2) -
+- Game Settings (2.2) -Imran
 
 - Displaying Clue in Graphical Form (2.3) -
 
