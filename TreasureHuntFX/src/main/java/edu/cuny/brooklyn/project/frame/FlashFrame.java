@@ -2,6 +2,7 @@ package edu.cuny.brooklyn.project.frame;
 
 import edu.cuny.brooklyn.project.GameSettings;
 import edu.cuny.brooklyn.project.message.I18n;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -42,6 +43,7 @@ public class FlashFrame extends Frame {
 	public void show(Stage stage) {
 		stage.setScene(scene);
 		stage.setTitle(I18n.getBundle().getString(MSG_APP_TITLE_FLASH_KEY));
+		scene.getStylesheets().add("main.css"); //adding css file
 		stage.show();
 	}
 
@@ -50,9 +52,14 @@ public class FlashFrame extends Frame {
 		vbox.setPadding(GameSettings.PADDING);
 		vbox.setSpacing(GameSettings.V_SPACING);
 		flashLabel = new Label(I18n.getBundle().getString(MSG_GAME_DESCRIPTION_KEY));
+		flashLabel.setId("startField"); //getting id, to connect to css file
 		startButton = new Button(I18n.getBundle().getString(MSG_START_GAME_KEY));
 		settingsButton = new Button(I18n.getBundle().getString(MSG_SETTINGS_GAME_KEY));
 		quitButton = new Button(I18n.getBundle().getString(MSG_QUIT_GAME_KEY));
+		startButton.setId("buttonStart");
+		settingsButton.setId("buttonStart");
+		quitButton.setId("buttonStart");
+		vbox.setAlignment(Pos.CENTER);
 		vbox.getChildren().addAll(flashLabel, startButton, settingsButton, quitButton);
 		scene = new Scene(vbox, GameSettings.SCENE_WIDTH, GameSettings.CANVAS_HEIGHT);
 	}
