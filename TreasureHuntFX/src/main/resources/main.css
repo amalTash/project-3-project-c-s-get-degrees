@@ -1,0 +1,20 @@
+.root
+{
+	-fx-background-color: linear-gradient(to bottom left, #D52455, #F8A954);
+}
+
+#startField
+{
+	-fx-font: 20pt "Trebuchet MS";
+	-fx-text-fill: #2F3437;
+}
+
+#startBtn
+{
+	-fx-font: 18pt "Helvetica Neue";
+	-fx-text-fill: white;
+	-fx-background-color: #2ECC98;
+	-fx-border-radius: 6,5,5,5;
+	-fx-padding: 20;
+}
+
