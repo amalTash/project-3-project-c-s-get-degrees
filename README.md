@@ -12,7 +12,7 @@ Project Req
 
 - Game Settings (2.2) -Imran
 
-- Displaying Clue in Graphical Form (2.3) -
+- Displaying Clue in Graphical Form (2.3) - Frances (and anyone who wishes to help!)
 
 - Locating Treasure via Poiting Device (2.4) -
 
