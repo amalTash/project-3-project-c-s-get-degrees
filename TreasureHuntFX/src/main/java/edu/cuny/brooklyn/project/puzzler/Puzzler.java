@@ -17,7 +17,7 @@ public abstract class Puzzler {
 		this.type = type;
 	}
 	
-	public abstract boolean isCorrect(String enteredAnswer);
+	public abstract boolean isCorrect(String enteredAnswer, int answeringAttempts);
 	
 	public String getAnswer() {
 		return answer;

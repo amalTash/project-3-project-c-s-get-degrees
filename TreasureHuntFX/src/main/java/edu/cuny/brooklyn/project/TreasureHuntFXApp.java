@@ -19,7 +19,7 @@ public class TreasureHuntFXApp extends Application {
 	private final static Logger LOGGER = LoggerFactory.getLogger(TreasureHuntFXApp.class);
 	
 	public static void main(String[] args) {
-		launch(args);
+		launch(args); 
 	}
 
 	@Override

@@ -30,6 +30,8 @@ public class PuzzlerFrame extends Frame {
 	private Button answerButton;
 	private TreasureFrame nextFrame;
 	private Stage nextStage;
+	private int puzzlerSetter;
+	private int diffcSetter;
 	
 	public PuzzlerFrame() {
 		puzzlerMaker = new PuzzlerMaker();
@@ -48,7 +50,7 @@ public class PuzzlerFrame extends Frame {
 		
 		answeringAttempts ++;
 		
-		if (!puzzler.isCorrect(answer)) {
+		if (!puzzler.isCorrect(answer, answeringAttempts)) {
 			LOGGER.debug("User's answer to the puzzler is wrong! This is attempt #" + answeringAttempts);
 			return;
 		} else {
@@ -68,11 +70,32 @@ public class PuzzlerFrame extends Frame {
 		nextFrame = treasureFrame;
 		nextStage = stage;
 	}
-
+	
+	@Override
+	public void setState(int puzzlerSetter, int puzzlerDiffc, Stage stage) {
+		this.puzzlerSetter = puzzlerSetter;
+		LOGGER.debug("PuzzlerSetter: " + puzzlerSetter);
+		this.diffcSetter = puzzlerDiffc;
+		show(stage);
+	}
 	
 	@Override
 	public void show(Stage stage) {
-		puzzler = puzzlerMaker.make();
+		new PuzzlerFrame();
+		switch (puzzlerSetter) {
+		case 0:
+		puzzler = puzzlerMaker.makeRandom();
+		break;
+		case 1:
+		puzzler = puzzlerMaker.makeSqrt();
+		break;
+		case 2:
+		puzzler = puzzlerMaker.makeSlidingCups(diffcSetter);
+		break;
+		default:
+		puzzler = puzzlerMaker.makeRandom();
+		break;
+		}
 		puzzlerLabel.setText(puzzler.getMessage());
 		answeringAttempts = 0;
 		stage.setScene(scene);

@@ -32,7 +32,7 @@ public class SqrtMathPuzzler extends MathPuzzler {
 	}
 	
 
-	public boolean isCorrect(String enteredAnswer) {
+	public boolean isCorrect(String enteredAnswer, int answeringAttempts) {
 		double entered = Double.parseDouble(enteredAnswer);
 		if (Math.abs((entered - answerValue) / answerValue) < toleratedAnswerRelativeError) {
 			LOGGER.debug("Correct answer");
