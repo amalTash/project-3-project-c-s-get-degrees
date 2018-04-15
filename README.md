@@ -8,7 +8,7 @@ CISC 3120 Sections MW8 and MW2, Spring 2018
 
 Project Req
 
-- Game Round and Game Scores (2.1) - Tenzin  
+- Game Round and Game Scores (2.1) - Imran & Tenzin  
 
 - Game Settings (2.2) -Imran
 
