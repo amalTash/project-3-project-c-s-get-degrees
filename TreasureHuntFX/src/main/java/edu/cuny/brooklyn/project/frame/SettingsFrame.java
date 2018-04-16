@@ -17,6 +17,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+
 public class SettingsFrame extends Frame{
 	private final static Logger LOGGER = LoggerFactory.getLogger(SettingsFrame.class);
 	
@@ -69,6 +70,7 @@ public class SettingsFrame extends Frame{
 	public void show(Stage stage) {
 		stage.setScene(scene);
 		stage.setTitle(I18n.getBundle().getString(MSG_APP_TITLE_SETTINGS_KEY));
+		scene.getStylesheets().add("settingStyle.css"); //adding css file
 		stage.show();
 	}
 	
@@ -131,11 +133,15 @@ public class SettingsFrame extends Frame{
 		
 		diffcGroup = new ToggleGroup();
 		easyDiffc = new ToggleButton("Easy");
+		easyDiffc.setId("easyBtn");
 		easyDiffc.setToggleGroup(diffcGroup);
-		normalDiffc = new ToggleButton("Normal");	
+		normalDiffc = new ToggleButton("Normal");
+		normalDiffc.setId("normBtn");
 		normalDiffc.setToggleGroup(diffcGroup);
 		hardDiffc = new ToggleButton("Hard");
+		hardDiffc.setId("hardBtn");
 		hardDiffc.setToggleGroup(diffcGroup);
+		vbox.getStyleClass().add("button");
 		vbox.getChildren().addAll(diffcLabel, easyDiffc, normalDiffc, hardDiffc);
 		scene = new Scene(vbox, GameSettings.SCENE_WIDTH, GameSettings.CANVAS_HEIGHT);
 
