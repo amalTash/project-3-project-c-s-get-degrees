@@ -14,7 +14,7 @@ Project Req
 
 - Displaying Clue in Graphical Form (2.3) - Frances (and anyone who wishes to help!)
 
-- Locating Treasure via Poiting Device (2.4) -
+- Locating Treasure via Poiting Device (2.4) - Gary
 
 - Add Simple Style using CSS (2.5) - Amal
 
