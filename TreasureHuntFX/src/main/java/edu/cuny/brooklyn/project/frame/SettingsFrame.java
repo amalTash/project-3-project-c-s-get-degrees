@@ -110,10 +110,13 @@ public class SettingsFrame extends Frame{
 		puzzlerLabel = new Label("Default Puzzler");
 		puzzlerGroup = new ToggleGroup();
 		randomPuzzlers = new ToggleButton("Random");
+		randomPuzzlers.setId("rndBtn");
 		randomPuzzlers.setToggleGroup(puzzlerGroup);
 		sqrtPuzzler = new ToggleButton("Sqrt");
+		sqrtPuzzler.setId("sqrtBtn");
 		sqrtPuzzler.setToggleGroup(puzzlerGroup);
-		slidingCupsPuzzler = new ToggleButton("SlidingCups");	
+		slidingCupsPuzzler = new ToggleButton("SlidingCups");
+		slidingCupsPuzzler.setId("slideBtn");
 		slidingCupsPuzzler.setToggleGroup(puzzlerGroup);
 
 		
