@@ -8,6 +8,7 @@ import edu.cuny.brooklyn.project.message.I18n;
 import edu.cuny.brooklyn.project.score.Scorer;
 import edu.cuny.brooklyn.project.treasure.TreasureField;
 import javafx.beans.InvalidationListener;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -16,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -57,6 +59,9 @@ public class TreasureFrame extends Frame {
 	private Pane winPane;
 	private Button quitButton;
 	private Button nextLevelButton;
+	
+	protected double mouseX;
+	protected double mouseY;
 	
 	// for resizing
 	private InvalidationListener resizeListener = o -> redrawTreasure();
@@ -156,6 +161,13 @@ public class TreasureFrame extends Frame {
 		canvas.widthProperty().bind(canvasHolder.widthProperty().subtract(20));
 		canvas.heightProperty().bind(canvasHolder.heightProperty().subtract(20));
 		
+		canvasHolder.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			public void handle(MouseEvent e) {
+				mouseX = e.getX();
+				mouseY = e.getY();
+			}
+		});
+		
 		return canvasHolder;
 	}
 	
@@ -199,19 +211,26 @@ public class TreasureFrame extends Frame {
 	}
 
 	private void doTreasureLocationAction() {
-		String xInputText = xPosTreasure.getText();
-		String yInputText = yPosTreasure.getText();
 		int xInput = -1;
 		int yInput = -1;
-		if (xInputText.isEmpty()) {
-			LOGGER.debug("User hasn't guessed X position of the treasure.");
+		if(mouseX > 0 && mouseY > 0) {
+			xInput = (int)mouseX;
+			yInput = (int)mouseY;
+		}
+		String xInputText = xPosTreasure.getText();
+		String yInputText = yPosTreasure.getText();
+			if (xInputText.isEmpty()) {
+				LOGGER.debug("User hasn't guessed X position of the treasure.");
 		}
 
-		if (yInputText.isEmpty()) {
-			LOGGER.debug("User hasn't guessed Y position of the treasure.");
+			if (yInputText.isEmpty()) {
+				LOGGER.debug("User hasn't guessed Y position of the treasure.");
 		}
-		xInput = Integer.parseInt(xInputText);
-		yInput = Integer.parseInt(yInputText);
+			
+		if(!xInputText.isEmpty() && !yInputText.isEmpty()) {
+			xInput = Integer.parseInt(xInputText);
+			yInput = Integer.parseInt(yInputText);
+		}
 		
 		if (treasureField.foundTreasure(xInput, yInput)) {
 			LOGGER.debug("Found treasure at location (" + xInput + "," + yInput + ")");
