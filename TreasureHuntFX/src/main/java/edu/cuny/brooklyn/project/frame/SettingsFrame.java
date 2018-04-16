@@ -141,7 +141,6 @@ public class SettingsFrame extends Frame{
 		hardDiffc = new ToggleButton("Hard");
 		hardDiffc.setId("hardBtn");
 		hardDiffc.setToggleGroup(diffcGroup);
-		vbox.getStyleClass().add("button");
 		vbox.getChildren().addAll(diffcLabel, easyDiffc, normalDiffc, hardDiffc);
 		scene = new Scene(vbox, GameSettings.SCENE_WIDTH, GameSettings.CANVAS_HEIGHT);
 
