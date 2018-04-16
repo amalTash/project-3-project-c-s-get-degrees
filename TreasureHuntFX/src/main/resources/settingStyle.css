@@ -1,29 +1,63 @@
 .root
 {
-	-fx-background-color: #DFAEE8;
+	-fx-background-color: #F4B9BE;
 	-fx-font: 15pt "Trebuchet MS";
 	-fx-text-fill: #2F3437;
 }
 
-.button
+#easyBtn
 {
 	-fx-font: 18pt "Helvetica Neue";
 	-fx-text-fill: white;
 	-fx-border-radius: 6,5,5,5;
 	-fx-padding: 5;
-}
-
-#easyBtn
-{
 	-fx-background-color: #9ff1a5;
 }
 
 #normBtn
 {
+	-fx-font: 18pt "Helvetica Neue";
+	-fx-text-fill: white;
+	-fx-border-radius: 6,5,5,5;
+	-fx-padding: 5;
 	-fx-background-color: #f7eb46;
 }
 
 #hardBtn
 {
+	-fx-font: 18pt "Helvetica Neue";
+	-fx-text-fill: white;
+	-fx-border-radius: 6,5,5,5;
+	-fx-padding: 5;
 	-fx-background-color: #ff9292;
+}
+
+#rndBtn
+{
+	-fx-font: 18pt "Helvetica Neue";
+	-fx-text-fill: white;
+	-fx-border-radius: 6,5,5,5;
+	-fx-padding: 5;
+	-fx-background-color: linear-gradient(to bottom right, #ff9292, black);
+}
+
+#slideBtn
+{
+	{
+	-fx-font: 18pt "Helvetica Neue";
+	-fx-text-fill: white;
+	-fx-border-radius: 6,5,5,5;
+	-fx-padding: 5;
+	-fx-background-color: linear-gradient(to bottom right, #f7eb46, black);
+}
+
+#sqrtBtn
+{
+	{
+	-fx-font: 18pt "Helvetica Neue";
+	-fx-text-fill: white;
+	-fx-border-radius: 6,5,5,5;
+	-fx-padding: 5;
+	-fx-background-color: linear-gradient(to bottom right, #9ff1a5, black);
+}
 }
