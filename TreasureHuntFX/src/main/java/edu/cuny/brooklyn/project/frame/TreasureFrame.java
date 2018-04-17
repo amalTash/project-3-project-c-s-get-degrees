@@ -24,6 +24,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.scene.shape.Circle;
 
 public class TreasureFrame extends Frame {
 	private final static Logger LOGGER = LoggerFactory.getLogger(TreasureFrame.class);
@@ -138,6 +139,11 @@ public class TreasureFrame extends Frame {
 	}
 	
 	private Pane buildTreasureFieldPane() {
+		Circle circle = new Circle();
+		circle.setCenterX(TreasureClue.getCircleX());
+		circle.setCenterY(TreasureClue.getCircleY());
+		circle.setRadius(TreasureClue.getMarginError());
+		
 		StackPane canvasHolder = new StackPane();
 		canvasHolder.setMinSize(GameSettings.CANVAS_HOLDER_MIN_WIDTH, GameSettings.CANVAS_HOLDER_MIN_HEIGHT);
 		canvasHolder.setStyle(GameSettings.DEFAULT_CANVAS_HOLDER_STYLE);
