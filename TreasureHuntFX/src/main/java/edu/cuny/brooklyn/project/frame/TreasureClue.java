@@ -12,6 +12,8 @@ public class TreasureClue {
 	
 	private static Random rng = new Random();
 	
+	public static int marginError = 0;
+	
 	/*
 	 * In fact, we can have different types of clues. That can make the game a little more interesting. 
 	 */
@@ -24,11 +26,19 @@ public class TreasureClue {
 		int x = xLeft + width/2 + xOffset;
 		int y = yTop + length/2 + yOffset;
 		
+		marginError = clueError;
+		
 		LOGGER.debug(String.format("Treasure is at (xLeft, yTop) -- (xRight, yBottom) = (%d, %d) -- (%d, %d)",
 				xLeft, yTop, xLeft + width, yTop + length));
 		LOGGER.debug(String.format("Clue is given at (x, y) = (%d, %d)", x, y));
 		
+		
+		
 		return "A treasure of size " + Math.max(width, length) + " is near (" + x + "," + y + ").";
+	}
+	
+	public static int getMarginError() {
+		return marginError;
 	}
 
 }
